@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 519.18 699.36">
+  <defs>
+    <style>
+      .cls-1 {
+        letter-spacing: -.03em;
+      }
+
+      .cls-2 {
+        fill: #ddd;
+        font-family: RalewayRoman-ExtraBold, Raleway;
+        font-size: 377.42px;
+        font-variation-settings: 'wght' 800;
+        font-weight: 700;
+      }
+    </style>
+  </defs>
+  <text/>
+  <text class="cls-2" transform="translate(2.88 322.69)"><tspan x="0" y="0">TU</tspan><tspan x="0" y="292.5">R</tspan><tspan class="cls-1" x="252.87" y="292.5">A</tspan></text>
+</svg>
