@@ -1,2 +1,527 @@
+/*IMPORTS
+------------------------------------------------*/
+/*--RESET--*/
 @import url("reset.css");
 
+/*--FONTS--*/
+
+
+/*SETUP
+------------------------------------------------*/
+/*--VARIABLES--*/
+:root {
+    /*Colour*/
+    --clr-neutral-100: 0deg 0% 87%; 
+    --clr-neutral-400: 307deg 1% 61%; 
+    --clr-neutral-700: 226deg 4% 25%;
+    --clr-neutral-900: 221deg 14% 10%;
+
+    /*Fonts*/
+        /*font size*/
+        font-size: 14px;
+
+        --fs-400: 1rem; 
+        --fs-600: 3rem;
+        --fs-900: 10rem; 
+
+        /*font family*/
+        --ff-base:'Poppins', sans-serif;;
+
+        /*font weight*/
+        --fw-regular: 400; 
+        --fw-light: 200; 
+        --fw-bold: 700;
+
+    /*Transitions*/
+    --transition-fast: 0.3s ease; 
+    --transition-slow: 0.45s ease;
+}
+
+/*UTILITY CLASSES
+------------------------------------------------*/
+/*--LAYOUT--*/
+.flex {
+    display: flex; 
+    gap: var(--flex-gap);
+}
+
+.flex-wrap {
+    display: flex; 
+    gap: var(--flex-wrap-gap); 
+    flex-wrap: wrap; 
+}
+
+.grid {
+    display: grid; 
+    row-gap: var(--grid-row-gap);
+    column-gap: var(--grid-column-gap);
+}
+
+/*--BUTTON--*/
+.btn {
+    padding: 1em 3em; 
+    border: 1px solid hsl(var(--clr-neutral-100)/20%);
+    border-radius: 3px; 
+    
+    color: hsl(var(--clr-neutral-100));
+    background: transparent;
+
+    text-transform: uppercase;
+
+    box-shadow: 0px 0px 0px transparent; 
+    transform: translateY(3px);
+    
+    transition: var(--transition-fast);
+}
+
+.btn:hover {
+    cursor: pointer;
+    transform: translateY(0px);
+    box-shadow: 2px 9px 10px 10px hsl(var(--clr-neutral-900)), 3px 5px 5px 4px black; 
+}
+
+.btn:active {
+    transform: translateY(3px);
+    box-shadow: 0px 0px 0px transparent; 
+}
+
+
+/*--SVG--*/
+.cls-1 {
+    letter-spacing: -.03em;
+}
+
+.cls-2 {
+    fill: hsl(var(--clr-neutral-100));
+    font-family: var(--ff-base);
+    font-size: 377.42px;
+    font-variation-settings: 'wght' 800;
+    font-weight: var(--fw-bold);
+}
+
+
+/*GLOBAL CSS
+------------------------------------------------*/
+h2 {
+    font-size: var(--fs-600);
+    text-transform: uppercase;
+
+    color: hsl(var(--clr-neutral-100));
+}
+
+a{
+    position: relative; 
+
+    color: hsl(var(--clr-neutral-100));
+}
+
+a.nav__menu-link::after {
+    content: "";
+    width: 100%; 
+    height: 2px;
+    
+    position: absolute; 
+    top: calc(100% + 0.25em); 
+    left: 0; 
+
+    background-color: hsl(var(--clr-neutral-100)/50%);
+
+    transform-origin: right;
+    transform: scaleX(0%);
+
+    transition: transform var(--transition-fast);
+}
+
+a.nav__menu-link:is(:focus, :hover)::after{
+    transform-origin: left;
+    transform: scaleX(100%);
+
+    transition: transform var(--transition-fast);
+
+    cursor: pointer;
+}
+
+/*CUSTOM CSS
+------------------------------------------------*/
+/*--SWITCHES--*/
+.projects__details-section--mobile {
+    display: none;
+}
+
+/*----------------------------------------------*/
+body {
+    font-size: var(--fs-400);
+    font-family: var(--ff-base);
+
+    color: hsl(var(--clr-neutral-100)/70%);
+}
+
+.global-bg {
+    width: 100vw;
+    height: 100vh;
+
+    position: fixed; 
+    inset: 0 auto auto 0;
+    z-index: -1;
+
+    background-image: radial-gradient(ellipse at 35% 15%, hsl(var(--clr-neutral-700)) 0%, hsl(var(--clr-neutral-900)) 67.5%);
+}
+
+/*--HEADER--*/
+header {
+    width: 100%;
+    height: 10vh; 
+    padding: 2rem;
+
+    position: fixed;
+    inset: 0 0 auto auto;
+}
+
+nav {
+    align-items: center;
+    justify-content: space-between;
+}
+
+.nav__menu {
+    --flex-gap: 5rem;
+    text-transform: uppercase;
+}
+/*--FOOTER--*/
+footer {
+    width: 100%;
+    height: 15vh; 
+    padding: 0 3rem 3rem 3rem;
+    
+    justify-content: space-between;
+
+    position: fixed;
+    inset: auto auto 0 0;
+}
+
+.footer__social-media-menu {
+    --grid-gap: 1rem;
+}
+
+.footer__scroll-ui {
+    position: relative;
+}
+
+.footer__scroll-line {
+    width: 1.5px; 
+    height: 100%; 
+
+    position: absolute;   
+    inset: 0 auto auto 50%; 
+    transform: translateX(-50%);
+
+    background-color: hsl(var(--clr-neutral-100));
+}
+
+.footer__scroll-text {
+    padding-inline: 1em; 
+
+    position: absolute;  
+    inset: 0 auto auto 50%; 
+    transform-origin: 0 0;
+    transform: translateX(calc(25% - 0.5em)) rotate(90deg);
+
+    text-transform: uppercase;
+    
+    background-color: hsl(var(--clr-neutral-900));
+}
+
+/*--MAIN--*/
+main {
+    width: 100%;
+    min-height: 100vh;
+
+    place-content:center;
+}
+
+.main__grid {
+    --grid-column-gap: 1rem;
+
+    width: fit-content;
+    height: fit-content; 
+
+    place-content: center;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 2.5fr 1fr;
+    grid-template-areas: 
+    "i-am ."
+    "tura tura"
+    ". web-dev";
+}
+
+/*"I am" + "A junior web designer"*/
+.main__grid-item:nth-child(1), 
+.main__grid-item:nth-child(3) {
+    font-size: var(--fs-400);
+    font-weight: var(--fw-light);
+    text-transform: uppercase;
+
+    color: hsl(var(--clr-neutral-100)/50%);
+}
+
+/*"I am"*/
+.main__grid-item:nth-child(1){
+    grid-area: i-am;
+    align-self: end;
+    justify-self: end;
+}
+
+/*"TURA"*/
+.main__grid-item:nth-child(2){    
+    grid-area: tura;
+    
+    font-size: var(--fs-900);
+    line-height: 1;
+    text-shadow: 1rem 1rem 1.5rem hsl(var(--clr-neutral-900)), 5px 5px 10px black;
+
+    color: hsl(var(--clr-neutral-100));
+}
+
+/*"Web dev"*/
+.main__grid-item:nth-child(3){
+    grid-area: web-dev;
+}
+
+/*PROJECTS
+------------------------------------------------*/
+.projects {
+    --grid-row-gap: 3rem;
+    width: 100%;
+    min-height: 100vh;
+    padding: calc(10vh + 3rem) 15rem;
+
+    place-content: center;
+
+}
+
+/*--CAROUSEL--*/
+.projects__carousel-container {
+    --flex-gap: 0.5em;
+}
+
+/*--CAROUSEL PICTURE & IMG--*/
+/*Image when not in focus*/
+.projects__carousel picture {
+    width: 21rem;
+    /* height: 100%; */
+    aspect-ratio: 6/7;
+    overflow: hidden; /*To fix blurred edges*/
+}
+
+.projects__carousel picture:hover {
+    cursor:pointer;   
+}
+
+/*When the picture is active in Desktop mode*/
+.projects__carousel picture.activeDesktop{
+    width: 27rem;
+}
+
+.projects__carousel picture.activeDesktop:hover {
+    cursor:default;   
+}
+
+.projects__carousel picture img {
+    width: 100%; 
+    height: 90%; 
+    margin: -5px -10px -10px -5px; /*To fix blurred edges*/
+
+    object-fit: cover;
+    
+    transform: translateY(calc(2rem));
+
+    /*FX*/
+    mask-image: linear-gradient(to top, transparent 3.5%, black);
+    filter: blur(1.75px) grayscale(1) contrast(1.5);
+    opacity: 0.2;
+
+    transition: var(--transition-slow);
+}
+
+.projects__carousel picture:not(.activeDesktop, .activeMobile) img:hover {
+    opacity: 0.3;
+    transform: translateY(calc(10% + 0.2rem - 20px));
+}
+
+picture.activeDesktop > img {
+    height: 100%; 
+    
+    transform: translateY(0%);
+
+    /*FX*/
+    filter: blur(0px) grayscale(1) contrast(1.1) brightness(1.5);
+    opacity: 1;
+
+    transition: var(--transition-fast);
+}
+
+/*--PROJECT DETAILS--*/
+.projects__details-section {
+    --grid-row-gap: 1em;
+    
+    margin: -4.5rem auto auto;   
+    width: 75%; 
+
+    text-align: center;
+}
+
+.projects__btn-container {
+    place-content: center;
+}
+
+@media screen and (max-width: 950px){
+
+
+    /*--SWITCHES--*/
+        .projects__details-section--mobile {
+            /* transform: translateY(-150%); */
+
+            --grid-row-gap: 0.25em;
+            padding-inline: 3rem;
+            
+            display: grid;
+            place-items: center; 
+            
+            text-align: center;
+        }
+
+    /*----------------------------------------------*/
+
+    /*PROJECTS
+    ------------------------------------------------*/
+    .projects {
+        --grid-row-gap: 3rem;
+
+        width: 100%;
+        min-height: 100vh;
+        margin: 0;
+        padding: calc(10vh + 1rem) 15rem;
+
+        place-content: center;
+    }
+
+    .projects__carousel {
+        width: 100vw;
+        height: calc(100vh - 10vh - 1rem);
+        padding-inline: 2rem;
+
+        display: grid; 
+        place-content: center;
+    }
+
+    /*--CAROUSEL--*/
+    .projects__carousel-container {
+        --flex-gap: 0.5em;
+        
+        width: 100%;
+        
+        flex-direction: column;
+    }
+
+    .projects__carousel-container > div {
+        width: 100%;
+        height: fit-content;
+
+        position: relative;
+    }
+
+    /*--CAROUSEL PICTURE & IMG--*/
+    /*Image when not in focus*/
+    .projects__carousel picture {
+        width: 100%;
+        aspect-ratio: 5/2;
+        border-radius: 5px;
+        overflow: hidden; /*To fix blurred edges*/
+
+        transition: var(--transition-fast);
+    }
+
+    .projects__carousel-container > div:nth-child(2){
+        transform: translateY(calc(-100vmin / 12.4));
+        
+        transition: var(--transition-fast);
+    }
+
+    .projects__carousel-container > div:nth-child(2):hover{
+        transform: translateY(calc((-100vmin / 5) - 5%));
+    }
+
+    .projects__carousel-container > div:nth-child(3){
+        transform: translateY(calc(-100vmin / 6.2));
+        
+        transition: var(--transition-fast);
+    }
+
+    .projects__carousel picture:nth-child(3):hover{
+        transform: translateY(calc((-100%  * 2 / 3) - 20%));
+    }
+
+    .projects__carousel picture:hover {
+        cursor:pointer;   
+    }
+
+    /*When the picture is active in mobile mode*/
+    .projects__carousel picture.activeDesktop{
+        height: 27rem;
+    }
+
+    .projects__carousel picture.activeMobile:hover {
+        cursor:default;   
+    }
+
+    .projects__carousel picture img {
+        width: 100%; 
+        height: 100%; 
+        margin: 0px; /*To fix blurred edges*/
+
+        object-fit: cover;
+        
+        transform: translateY(0px);
+
+        /*FX*/
+        mask-image: linear-gradient(to top, transparent 25%, black);
+        filter: blur(1.75px) grayscale(1) contrast(1);
+        opacity: 1;
+
+        transition: var(--transition-fast);
+    }
+
+    .projects__carousel picture:not(.activeMobile) img:hover {
+        opacity: 1;
+        transform: translateY(0px);
+    }    
+
+    picture.activeDesktop > img {
+        height: 100%; 
+        
+        transform: translateY(-10%);
+
+        /*FX*/
+        filter: blur(0px) grayscale(1) contrast(1.1) brightness(1.5);
+
+        transition: var(--transition-fast);
+    }
+
+    /*--PROJECT DETAILS--*/
+    .projects__details-section--mobile {
+        --grid-row-gap: 1em;
+        
+        margin: 0rem auto auto;   
+        width: 75%; 
+
+        position: absolute;
+        inset: auto auto 50% 50%;
+        transform: translate(-50%, 50%);
+
+        text-align: center;
+    }
+
+
+    .projects__btn-container {
+        place-content: center;
+    }
+}
